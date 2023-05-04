@@ -1,29 +1,19 @@
 #include "main.h"
 #include <stdio.h>
-
 /**
- * print_binary - print binary representation of a number
- * @n: decimal number to print as binary
+ * get_bit - get the value of a bit at a given index
+ * @n: number to evaluate
+ * @index: index starting from 0, of the bit we want to get
+ * Return: Value of bit at index, or -1 if error
  */
-void print_binary(unsigned long int n)
+int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int temp;
-	int shifts;
+	unsigned long int hold;
 
-	if (n == 0)
-	{
-		printf("0");
-		return;
-	}
+	if (index > 64)
+		return (-1);
 
-	for (temp = n, shifts = 0; (temp >>= 1) > 0; shifts++)
-		;
+	hold = n >> index;
 
-	for (; shifts >= 0; shifts--)
-	{
-		if ((n >> shifts) & 1)
-			printf("1");
-		else
-			printf("0");
-	}
+	return (hold & 1);
 }
